@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "s3Osln3qXKvfOMbCcRaQ3MN1G//dAq6EFh5Y91V8eNM=",
+  "Hash": "5mFlFqQACvGY+Daf0YX1uobsn2F2c8Sj2oEecCffwh8=",
   "Source": "SepaBetaPlayground",
   "BasePath": "_content/SepaBetaPlayground",
   "Mode": "Default",
@@ -10,12 +10,46 @@
     {
       "Name": "SepaBetaPlayground\\wwwroot",
       "Source": "SepaBetaPlayground",
-      "ContentRoot": "C:\\VS\\Playground\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\",
+      "ContentRoot": "C:\\GITHub\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\",
       "BasePath": "_content/SepaBetaPlayground",
       "Pattern": "**"
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\GITHub\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\css\\things.css",
+      "SourceId": "SepaBetaPlayground",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GITHub\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\",
+      "BasePath": "_content/SepaBetaPlayground",
+      "RelativePath": "css/things.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\things.css"
+    },
+    {
+      "Identity": "C:\\GITHub\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\favicon.ico",
+      "SourceId": "SepaBetaPlayground",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GITHub\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\",
+      "BasePath": "_content/SepaBetaPlayground",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
     {
       "Identity": "C:\\Users\\marco.vezzani\\.nuget\\packages\\umbraco.cms.staticassets\\10.4.0\\staticwebassets\\App_Plugins\\Umbraco.BlockGridEditor.DefaultCustomViews\\umbBlockGridDemoHeadlineBlock.html",
       "SourceId": "Umbraco.Cms.StaticAssets",
@@ -43433,23 +43467,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\marco.vezzani\\.nuget\\packages\\umbraco.cms.staticassets\\10.4.0\\staticwebassets\\umbraco\\views\\users\\views\\users\\users.html"
-    },
-    {
-      "Identity": "C:\\VS\\Playground\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\favicon.ico",
-      "SourceId": "SepaBetaPlayground",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\VS\\Playground\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\",
-      "BasePath": "_content/SepaBetaPlayground",
-      "RelativePath": "favicon.ico",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.ico"
     }
   ]
 }

@@ -1,7 +1,11 @@
 {
   "Files": [
     {
-      "Id": "C:\\VS\\Playground\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\favicon.ico",
+      "Id": "C:\\GITHub\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\css\\things.css",
+      "PackagePath": "staticwebassets\\css\\things.css"
+    },
+    {
+      "Id": "C:\\GITHub\\SepaBetaPlayground\\SepaBetaPlayground\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
