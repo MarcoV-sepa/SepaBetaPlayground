@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.MediaContact2)Model.Content;
+    var settings = (ContentModels.MediaContact2)Model.Settings;
+}
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <h1>@content.Value("title")</h1>
+                <p>@content.Value("text")</p>
+            </div><!-- /col -->

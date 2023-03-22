@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.MediaContact)Model.Content;
+    var settings = (ContentModels.MediaContact)Model.Settings;
+}
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <h1>@content.Value("headingLeft")</h1>
+                <p>@content.Value("textLeft")</p>
+            </div><!-- /col -->
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <h1>@content.Value("headingRight")</h1>
+                <p>@content.Value("textRight")</p>
+            </div><!-- /col --> 
+
