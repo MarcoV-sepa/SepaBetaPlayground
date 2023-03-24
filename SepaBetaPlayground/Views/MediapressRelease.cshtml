@@ -10,12 +10,32 @@
     <div class="row mb4">
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <h1>@Model.Value("Title")</h1>
-            <p>Tag: 
+            <p>Tag (Drop down): 
 @if (Model.HasValue("tag"))
 {
-    @(Model.Value<string>("tag"))
+    <strong>@(Model.Value<string>("tag"))</strong>
 }            
             </p>
+@{
+    if (Model.HasValue("tg"))
+    {
+        <p>Tag (checkbox): 
+            @foreach (var item in Model.Value<IEnumerable<string>>("tg"))
+            {
+                <strong>@item</strong>
+            }
+        </p>
+    }
+}            
+@{
+    IPublishedContent typedContentPicker = Model.Value<IPublishedContent>("categoryPicker");
+    if (typedContentPicker != null)
+    {
+        <p>Tag (content picker): <strong>@typedContentPicker.Value("category")</strong></p>
+    }
+}        
+            
+            
             <p>Date Published: @date.ToString("dd MMMM yyyy")</p>
         </div><!-- /col -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
