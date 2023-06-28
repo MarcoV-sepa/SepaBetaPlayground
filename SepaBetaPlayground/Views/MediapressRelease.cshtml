@@ -1,6 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.MediaRelease>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
 @{
 	Layout = "MasterTemplate.cshtml";
 	var date = Model.Value<DateTime>("date");
@@ -56,6 +57,13 @@
         </div><!-- /col -->
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             @Model.Value("bodyText")
+@{
+    var typedMediaPickerSingle = Model.Image;
+    if (typedMediaPickerSingle is MediaWithCrops mediaEntry)
+    {
+        <img src="@mediaEntry.GetCropUrl("crop")" />
+    }
+}            
         </div><!-- /col -->        
     </div><!-- /row -->
 </div><!-- /container -->

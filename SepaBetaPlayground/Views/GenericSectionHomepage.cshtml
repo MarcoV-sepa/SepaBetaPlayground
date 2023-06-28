@@ -1,0 +1,49 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.GenericSectionHomepage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
+@{
+	Layout = "MasterTemplate.cshtml";
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <h1>@Model.Value("heading")</h1>
+        </div><!-- /col -->
+        <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+            <p>@Model.Value("bodyText")</p>
+        </div><!-- /col -->        
+    </div><!-- /row -->
+</div><!-- /container -->
+
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+@{
+//var variants = Umbraco.Content(Guid.Parse("170c505e-3c7d-417a-b380-76e6facacdee")).Value<IEnumerable<BlockListItem>>("Stick").Select(x => x.Content).OrderByDescending(x => x.Value<DateTime>("date")).Take(1);
+    var kid = Model.ChildrenOfType("g1").FirstOrDefault();
+    if (kid != null)
+    {
+        var variants = Umbraco.Content(Guid.Parse(kid.Key.ToString())).Value<IEnumerable<BlockListItem>>("Stick").Select(x => x.Content).OrderByDescending(x => x.Value<DateTime>("date")).Take(1);
+        foreach (var variant in variants)
+        {
+            var dt = variant.Value<DateTime>("date");
+		    <h2>@variant.Value("heading")</h2>
+		    <p><strong>@dt.ToString("dd MMMM yyyy")</strong><br />@variant.Value("text")</p>
+		
+        }
+    }
+}    
+
+
+
+    
+
+	
+
+        </div><!-- /col -->        
+    </div><!-- /row -->
+</div><!-- /container -->
+
+
