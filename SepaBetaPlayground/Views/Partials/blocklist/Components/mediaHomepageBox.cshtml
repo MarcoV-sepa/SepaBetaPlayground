@@ -1,0 +1,22 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+@{
+    var content = (ContentModels.MediaHomepageBox)Model.Content;
+    var settings = (ContentModels.MediaHomepageBox)Model.Settings;
+}
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="BoxBorder">
+                <h1>@content.Value("heading")</h1>
+                <p>@content.Value("text")</p>
+@{
+    var link = content.Value<Link>("linkTo");
+    if (link != null)
+    {
+        <p><a href="@link.Url" target="@link.Target">I am a link</a></p>
+    }
+}
+                
+            </div>
+        </div><!-- /col -->

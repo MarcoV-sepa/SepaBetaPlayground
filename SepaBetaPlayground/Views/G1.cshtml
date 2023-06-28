@@ -1,0 +1,31 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.G1>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
+@{
+	Layout = "MasterTemplate.cshtml";
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+@{
+    var variants = Model.Value<IEnumerable<BlockListItem>>("Stick").Select(x => x.Content).OrderByDescending(x => x.Value<DateTime>("date"));
+    //var currentHeading =   DateTime.Now.Year.ToString();
+    var currentHeading = "";
+    foreach (var variant in variants)
+    {
+        var dt = variant.Value<DateTime>("date");
+        var chkYear = dt.ToString("yyyy");
+        if (currentHeading != chkYear) {
+            currentHeading = chkYear;
+            <h2>@chkYear</h2>
+        }
+		<h4>@variant.Value("heading")</h4>
+		<p><strong>@dt.ToString("dd MMMM yyyy")</strong></p>//<br />@variant.Value("text")</p>
+		
+    }
+	
+}
+        </div><!-- /col -->        
+    </div><!-- /row -->
+</div><!-- /container -->

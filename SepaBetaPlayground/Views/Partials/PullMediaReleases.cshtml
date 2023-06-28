@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	var selection = Umbraco.Content(Guid.Parse("9cdb1961-0b2c-4b61-a742-506b75c2b506"))
+    .ChildrenOfType("mediaRelease").OrderByDescending(x => x.Value<DateTime>("date")).Take(5)
+    .Where(x => x.IsVisible());
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <h2>Media Releases</h2>
+            <ul>
+            	@foreach (var item in selection)
+            	{
+            	    var date = item.Value<DateTime>("date");
+            		<li>
+            			<p><a href="@item.Url()">@item.Name()</a><br />@date.ToString("dd MMMM yyyy")</p>
+            		</li>
+            	}
+            </ul>
+        </div><!-- /col -->
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <h2>Press Statment</h2>
+        </div><!-- /col -->        
+    </div><!-- /row -->
+</div><!-- /container -->
+
+
+

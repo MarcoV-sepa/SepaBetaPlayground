@@ -1,0 +1,18 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.MediaContacts>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "MasterTemplate.cshtml";
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <h1>@Model.Value("title")</h1>
+        </div><!-- /col -->
+        <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+            <p>@Model.Value("bodyText")</p>
+        </div><!-- /col -->        
+    </div><!-- /row -->
+</div><!-- /container -->
+
+@Html.GetBlockListHtml(Model, "Contacts")

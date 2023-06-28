@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+@{ var selection = Model.Ancestors().Where(x => x.IsVisible()).ToArray(); }
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+@if (selection.Length > 0)
+{
+  <p>
+    @foreach (var item in selection.OrderBy(x => x.Level))
+    {
+      <a href="@item.Url()">@item.Name</a> @(">")
+    }
+    @Model.Name
+  </p>
+}
+        </div><!-- /col -->        
+    </div><!-- /row -->
+</div><!-- /container -->
