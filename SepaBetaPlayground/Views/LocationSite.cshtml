@@ -1,0 +1,55 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.LocationSite>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
+@{
+	Layout = "MasterTemplate.cshtml";
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <h1>@Model.Value("heading")</h1>
+            @Model.Value("blurb")
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div><!-- /container -->
+
+<div class="container">
+    <div class="row mb4">
+            @Html.GetBlockListHtml(Model, "Items")
+    </div><!-- /row -->
+</div><!-- /container -->
+
+
+<!--- BLOCKS - Instead of using the default I create this so we could know how many there are before we loop -->
+@{
+    var blocks = Model.Value<IEnumerable<BlockListItem>>("reports");
+}    
+    @if (blocks.Any())
+    {
+    	<div class="container mb4">
+            <div class="row mb4">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb4">
+                    <h2>Latest updates</h2>
+                </div>
+                @foreach (var block in blocks)
+                {
+                    var item = block.Content;
+                    @Html.Partial("blocklist/Components/" + item.ContentType.Alias, block)
+                }
+            </div>
+        </div>    
+    }
+<!--- BLOCKS - Instead of using the default I create this so we could know how many there are before we loop -->    
+
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="bx1">
+                <h3>Report a pollution incident</h3>
+                <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. In pulvinar nisi tellus. Aliquam quis massa tellus. Etiam interdum turpis purus, vel vehicula orci eleifend et. </p>
+                <p><a href="#" class="btn btn-primary">Report a pollution incident</a></p>
+            </div>
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div><!-- /container -->

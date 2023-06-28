@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+@{
+    var content = (ContentModels.LatestReports)Model.Content;
+    var settings = (ContentModels.LatestReports)Model.Settings;
+}
+<div class="col-lg-4 col-md-6 col-sm-12 col-12 mb4">
+    <div class="card">
+        <div class="card-body">
+    <h5 class="card-title">@content.Value("heading")</h5>
+@{
+    var link = content.Value<Link>("link");
+    if (link != null)
+    {
+        <p><a href="@link.Url" target="@link.Target">@content.Value("linkText")</a></p>
+    }
+}    
+        </div><!-- /card-body -->
+    </div><!-- /card -->
+</div><!-- /col -->

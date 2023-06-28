@@ -1,0 +1,37 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Locations>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "MasterTemplate.cshtml";
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <h1>@Model.Value("heading")</h1>
+            @Model.Value("introText")
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div><!-- /container -->
+
+@{
+	var selection = Umbraco.Content(Guid.Parse("b08d69fc-f7af-432e-b3d3-83112fe6421f"))
+    .ChildrenOfType("locationSite")
+    .Where(x => x.IsVisible());
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+@foreach (var item in selection)
+{            
+	    <div class="card mb-2">
+            <div class="card-body">
+                <h1><a href="@item.Url()">@item.Value("heading")</a></h1>
+                <p>@item.Value("description")</p>
+            </div>
+        </div>
+}            
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div><!-- /container -->
+
+
