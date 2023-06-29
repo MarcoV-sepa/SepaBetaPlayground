@@ -1,0 +1,64 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.LocationSiteFaq>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
+@{
+	Layout = "MasterTemplate.cshtml";
+}
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <h1>@Model.Value("heading")</h1>
+            @Model.Value("text")
+            <hr >
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div><!-- /container -->
+
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+@{
+    var blocks = Model.Value<IEnumerable<BlockListItem>>("faq2");
+}    
+    @if (blocks.Any())
+    {
+        var acc = 0;
+        @foreach (var block in blocks)
+        {
+            var item = block.Content;
+            <h2>@item.Value("heading")</h2>
+            var faqItems = item.Value<IEnumerable<BlockListItem>>("holder");
+             acc=acc+1;
+            @if (faqItems.Any())
+            {
+               
+                var accitems = 0;
+                <div class="accordion" id="accordion-@acc">
+                @foreach (var faqItem in faqItems)
+                {
+                var faq = faqItem.Content;
+                accitems = accitems + 1;
+                
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-@acc-@accitems">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@acc-@accitems" aria-expanded="false" aria-controls="collapse-@acc-@accitems">
+                                @faq.Value("heading")
+                          </button>
+                        </h2>
+                        <div id="collapse-@acc-@accitems" class="accordion-collapse collapse" aria-labelledby="heading-@acc-@accitems" data-bs-parent="#accordion-@acc">
+                          <div class="accordion-body">
+                                @faq.Value("text")
+                          </div>
+                        </div><!-- /collapse-->
+                    </div>   <!-- /accordion-item -->             
+                }
+                </div><!-- /sccordion -->
+            }
+        }
+    }
+        
+        </div><!-- /col -->   
+    </div><!-- /row -->
+</div><!-- /container -->

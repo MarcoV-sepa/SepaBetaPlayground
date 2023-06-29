@@ -10,6 +10,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
             <h1>@Model.Value("heading")</h1>
             @Model.Value("blurb")
+            <hr >
         </div><!-- /col -->
     </div><!-- /row -->
 </div><!-- /container -->
@@ -17,6 +18,7 @@
 <div class="container">
     <div class="row mb4">
             @Html.GetBlockListHtml(Model, "Items")
+            
     </div><!-- /row -->
 </div><!-- /container -->
 
@@ -35,12 +37,53 @@
                 @foreach (var block in blocks)
                 {
                     var item = block.Content;
+                    <!-- still utilising the block element for each item though -->
                     @Html.Partial("blocklist/Components/" + item.ContentType.Alias, block)
                 }
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb4">
+                    <hr />
+                </div>
             </div>
         </div>    
     }
 <!--- BLOCKS - Instead of using the default I create this so we could know how many there are before we loop -->    
+
+@{
+	var selection = Model.Children().Where(x => x.IsVisible());
+}
+
+@{
+    if (selection.Any())
+    {
+ 	    
+ 	    <div class="container mb4">  
+            <div class="row mb4">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb4"> 
+                    <h2>More Information</h2>
+                </div>
+            	@foreach (var item in selection)
+            	{
+            	    <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb4">
+                        <div class="card">
+                            <div class="card-body">
+                                <p><a href="@item.Url()">@item.Name()</a></p>   
+                            </div><!-- /card-body -->
+                        </div><!-- /card -->
+                    </div><!-- /col -->
+            	}
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb4"> 
+                    <p> </p>
+                    <hr />
+                </div>   
+                
+            </div>
+        </div>
+               
+    }
+}    
+
+
+
 
 <div class="container">
     <div class="row mb4">
