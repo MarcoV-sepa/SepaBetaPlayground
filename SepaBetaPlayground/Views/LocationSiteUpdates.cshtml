@@ -1,6 +1,82 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.LocationSiteUpdates>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
 @{
 	Layout = "MasterTemplate.cshtml";
 }
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <h1>@Model.Value("heading")</h1>
+            <hr >
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div><!-- /container -->
+
+<div class="container">
+    <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+@{            
+ var updates = Model.Value<IEnumerable<BlockListItem>>("updates").Select(x => x.Content).OrderByDescending(x => x.Value<DateTime>("date"));
+    //var currentHeading =   DateTime.Now.Year.ToString();
+    var currentHeading = "";
+    var loop = 0;
+    var acc = 0;
+    var accitems = 1;
+    foreach (var update in updates)
+    {
+        var dt = update.Value<DateTime>("date");
+        var chkYear = dt.ToString("yyyy");
+        if (currentHeading != chkYear) {
+            if (loop != 0) {
+                acc=acc+1;
+                @Html.Raw("</div><!-- /accord -->");
+                loop = 0;
+            }
+                loop = loop +1;
+                currentHeading = chkYear;
+                <h2>@chkYear</h2>
+                
+        }
+        if (loop == 1) {
+            @Html.Raw("<div class='accordion' id='accordion-@acc'>");
+        }
+		
+					<div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-@acc-@accitems">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@acc-@accitems" aria-expanded="false" aria-controls="collapse-@acc-@accitems">
+                                @dt.ToString("dd MMMM yyyy")
+                          </button>
+                        </h2>
+                        <div id="collapse-@acc-@accitems" class="accordion-collapse collapse" aria-labelledby="heading-@acc-@accitems" data-bs-parent="#accordion-@acc">
+                          <div class="accordion-body">
+                                <p><strong>Latest update</strong></p>
+								@update.Value("update")
+								@if(!string.IsNullOrWhiteSpace(update.Value("whatWeveDone").ToString())){                                
+									<p><strong>What we've done</strong></p>
+									@update.Value("whatWeveDone")
+								}
+                          </div>
+                        </div><!-- /collapse-->
+                    </div>   <!-- /accordion-item --> 		
+        
+        loop        = loop +1;
+		accitems    = accitems +1;
+    }
+    @Html.Raw("</div><!-- /accord -->");
+	
+}            
+            
+            
+            
+            
+            
+            
+            
+
+
+        
+        </div><!-- /col -->   
+    </div><!-- /row -->
+</div><!-- /container -->

@@ -17,6 +17,41 @@
 
 <div class="container">
     <div class="row mb4">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+@{
+    var updatesPage = Model.ChildrenOfType("locationSiteUpdates").FirstOrDefault();
+    if (updatesPage != null)
+    {
+        var variants = Umbraco.Content(Guid.Parse(updatesPage.Key.ToString())).Value<IEnumerable<BlockListItem>>("updates").Select(x => x.Content).OrderByDescending(x => x.Value<DateTime>("date")).Take(1);
+        foreach (var variant in variants)
+        {
+            var dt = variant.Value<DateTime>("date");
+		    <h5><strong>Date Published - @dt.ToString("dd MMMM yyyy")</strong></h5>
+		    <p><strong>Latest update</strong></p>
+		    @variant.Value("update")
+@if(!string.IsNullOrWhiteSpace(variant.Value("whatWeveDone").ToString())){  		    
+		    <p><strong>What we've done</strong></p>
+            @variant.Value("whatWeveDone")
+}            
+        }
+        
+    // re-check page to see if its been set to visible
+    var updatesPageCheck = Model.ChildrenOfType("locationSiteUpdates").Where(x => x.IsVisible()).FirstOrDefault();
+    if (updatesPageCheck != null)
+    {
+        <p><a href="@updatesPageCheck.Url()" class="btn btn-primary">View all previous updates</a></p>
+    }
+        
+    }
+}
+<hr >
+        </div><!-- /col -->
+    </div><!-- /row -->
+</div><!-- /container -->
+
+
+<div class="container">
+    <div class="row mb4">
             @Html.GetBlockListHtml(Model, "Items")
             
     </div><!-- /row -->
