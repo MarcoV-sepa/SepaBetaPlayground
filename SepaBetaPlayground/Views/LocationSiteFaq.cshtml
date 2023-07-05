@@ -28,7 +28,10 @@
         @foreach (var block in blocks)
         {
             var item = block.Content;
-            <h2>@item.Value("heading")</h2>
+            if (item.Value("heading").ToString().Length > 0)
+            {
+                <h2>@item.Value("heading")</h2>
+            }
             var faqItems = item.Value<IEnumerable<BlockListItem>>("holder");
              acc=acc+1;
             @if (faqItems.Any())

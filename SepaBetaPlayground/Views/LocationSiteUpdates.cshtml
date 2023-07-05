@@ -46,7 +46,7 @@
 					<div class="accordion-item">
                         <h2 class="accordion-header" id="heading-@acc-@accitems">
                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@acc-@accitems" aria-expanded="false" aria-controls="collapse-@acc-@accitems">
-                                @dt.ToString("dd MMMM yyyy")
+                                <strong>@dt.ToString("dd MMMM")</strong> : @update.Value("title")
                           </button>
                         </h2>
                         <div id="collapse-@acc-@accitems" class="accordion-collapse collapse" aria-labelledby="heading-@acc-@accitems" data-bs-parent="#accordion-@acc">
