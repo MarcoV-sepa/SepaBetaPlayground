@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.Blocks;
+@{
+    var content = (ContentModels.FaqHolder)Model.Content;
+    var settings = (ContentModels.FaqHolder)Model.Settings;
+}
+
+<h2>@content.Value("heading")</h2>
+
+
+
+@{
+    var faqItems = content.Value<IEnumerable<BlockListItem>>("holder");
+
+    if (faqItems.Any())
+    {
+        foreach (var item in faqItems)
+        {
+            var data = item.Content;
+            @await Html.PartialAsync("blocklist/Components/" + data.ContentType.Alias, item) 
+        }
+    }
+
+}
+

@@ -5,9 +5,8 @@
     var content = (ContentModels.FaqItem)Model.Content;
     var settings = (ContentModels.FaqItem)Model.Settings;
 }
-<div class="col-lg-12 col-md-12 col-sm-12 col-12 mb4">
 
-            <h2 >@content.Value("heading")</h2>
-            @content.Value("text")
 
-</div><!-- /col -->
+<h3 >@content.Value("heading")</h3>
+@content.Value("text")
+<hr />
